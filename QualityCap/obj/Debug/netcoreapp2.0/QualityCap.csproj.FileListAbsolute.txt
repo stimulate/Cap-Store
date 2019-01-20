@@ -1,0 +1,12 @@
+C:\temp\QualityCap\QualityCap\bin\Debug\netcoreapp2.0\QualityCap.deps.json
+C:\temp\QualityCap\QualityCap\bin\Debug\netcoreapp2.0\QualityCap.runtimeconfig.json
+C:\temp\QualityCap\QualityCap\bin\Debug\netcoreapp2.0\QualityCap.runtimeconfig.dev.json
+C:\temp\QualityCap\QualityCap\bin\Debug\netcoreapp2.0\QualityCap.dll
+C:\temp\QualityCap\QualityCap\bin\Debug\netcoreapp2.0\QualityCap.pdb
+C:\temp\QualityCap\QualityCap\obj\Debug\netcoreapp2.0\QualityCap.csprojAssemblyReference.cache
+C:\temp\QualityCap\QualityCap\obj\Debug\netcoreapp2.0\QualityCap.csproj.CoreCompileInputs.cache
+C:\temp\QualityCap\QualityCap\obj\Debug\netcoreapp2.0\QualityCap.AssemblyInfoInputs.cache
+C:\temp\QualityCap\QualityCap\obj\Debug\netcoreapp2.0\QualityCap.AssemblyInfo.cs
+C:\temp\QualityCap\QualityCap\obj\Debug\netcoreapp2.0\QualityCap.dll
+C:\temp\QualityCap\QualityCap\obj\Debug\netcoreapp2.0\QualityCap.pdb
+C:\temp\QualityCap\QualityCap\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

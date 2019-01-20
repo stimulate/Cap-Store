@@ -1,0 +1,75 @@
+@model QualityCap.Models.ShoppingCartViewModel.ShoppingCartViewModel
+@{
+    ViewData["Title"] = "Default";
+}
+
+
+<a class="btn" id="CartBtn"><i class="fa fa-shopping-cart"></i>Shopping Cart<span class="badge">@Model.CartItems.Count</span></a>
+<div class="shopping-cart">
+
+    @*<h3><span class="glyphicon glyphicon glyphicon-shopping-cart"></span>Shopping Cart<span class="badge">@Model.CartItems.Count</span></h3>*@
+
+
+    <div class="container">
+        <div class="row" style="text-align:center;">
+            <div class="col-sm-2">
+                <h4 class="display-4">Item</h4>
+            </div>
+            <div class="col-sm-2">
+                <h4 class="display-4">Quantity</h4>
+            </div>          
+            <div class="col-sm-2">
+                <h4 class="display-4">Price</h4>
+            </div>
+        </div>
+
+        @foreach (var item in Model.CartItems)
+        {
+            <div class="row" style="text-align:center;width:600px">
+
+                <div class="col-sm-4"><a asp-action="Details" asp-route-id="@item.Cap.CapID">@item.Cap.Name</a> </div>
+
+                <div class="col-sm-3">                 
+                        @item.Count      
+                </div>
+                <div class="col-sm-1" style="padding:0px;margin:0px">
+                    <ul style="list-style:none;padding:0px;margin:0px">
+                        <li>  <a asp-action="Increase" asp-controller="ShoppingCart" asp-route-id="@item.Cap.CapID"><span class="glyphicon glyphicon-triangle-top" style="top:-7px;left:-30px"></span></a></li>
+                        <li> <a asp-action="RemoveFromCart" asp-controller="ShoppingCart" asp-route-id="@item.Cap.CapID"><span class="glyphicon glyphicon-triangle-bottom" style="top:-7px;left:-30px"></span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-sm-4">$@item.Cap.Price</div>
+            </div>
+        }
+
+        <div class="row" style="margin-top:20px;text-align:center;">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2"><strong>SubTotal:</strong></div>
+
+            <div class="col-sm-2"><strong>$@Model.CartTotal</strong></div>
+
+        </div>
+
+        @if (@Model.CartItems.Count > 0)
+        {
+            <div class="row" style="margin-top:20px;">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-2">
+                    <a asp-action="EmptyCart" asp-controller="ShoppingCart">                       
+                            Empty Cart <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                </div>
+                <div class="col-sm-2">
+                    <a asp-action="Create" asp-controller="Orders">                       
+                            Checkout <span class="glyphicon glyphicon-step-forward"></span>                                            
+                    </a>
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+</div>

@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @*<base href="http://dochyper.unitec.ac.nz/yuh46/asp_assignment/" target="_self" />*@
+   
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>@ViewData["Title"] - Quality Cap</title>
+    <script>
+        $(document).ready(function () {
+            $("#shopping, .cart").click(function () {
+                $(".
+        ").css("visibility", "visible");
+            });
+        });
+    </script>
+    <style>
+        ul li {
+            list-style: none;
+        }
+
+        ul .navController {
+            display: block;
+            left: 0;
+            width: 100%;
+        }
+
+        .round {
+            width: 180px;
+            height: 180px;
+            border: 8px solid lightcyan;
+            border-radius: 180px;
+            line-height: 100px;
+            overflow: hidden;
+            float: left;
+        }
+
+        footer_container {
+            width: 100%;
+            position: relative;
+            clear: both;
+            zoom: 1
+        }
+
+        .footer_container:after {
+            content: ".";
+            display: block;
+            clear: both;
+            visibility: hidden;
+            height: 0;
+        }
+
+        .footer {
+            width: 980px;
+            padding: 20px 5px 10px;
+            margin: 0 auto;
+            position: relative;
+            zoom: 1
+        }
+
+            .footer:after {
+                content: ".";
+                display: block;
+                clear: both;
+                visibility: hidden;
+                height: 0;
+            }
+
+        .footer_links {
+            margin: 16px 0 20px;
+            border-top: 1px solid #cac9c9;
+            padding-top: 22px;
+        }
+
+            .footer_links h2 {
+                display: none;
+            }
+
+            .footer_links li {
+                display: inline-block;
+                border-left: 1px solid #b9b8b8;
+                padding: 0 8px;
+            }
+
+                .footer_links li:first-child {
+                    border-left: none;
+                    padding-left: 0;
+                }
+
+            .footer_links ul li a {
+                text-decoration: none;
+                font-size: 12px;
+                line-height: 17px
+            }
+
+        .estar {
+            width: 980px;
+            padding: 10px 5px 20px;
+            margin: 0 auto;
+            clear: both;
+            text-align: right;
+        }
+
+            .estar a {
+                display: inline;
+                font-size: 11px;
+                text-decoration: none;
+                color: #767676;
+            }
+
+                .estar a:hover {
+                    color: #231f20;
+                }
+
+        .footer_content_top, .footer_content_bottom {
+            width: 980px;
+        }
+    </style>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand" style="display :inline-flex; padding :0px"><img src="~/images/logo.png" class="logo" style="width:50px; height:50px; margin-right:20px" /></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="MemberCaps" asp-action="Index">Caps</a></li>
+                    <li style="color:magenta;display :inline-flex; padding:14px;font-size:15px;" id="shopping"> Cart</li>
+                   
+                    @if (User.IsInRole("Member"))
+                    {
+                        <li><a asp-area="" asp-controller="Manage" asp-action="Index">Dashboard</a></li>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li><a asp-area="" asp-controller="Caps" asp-action="Index">AdminCaps</a></li>
+                        <li><a asp-area="" asp-controller="Categories" asp-action="Index">Categories</a></li>
+                        <li><a asp-area="" asp-controller="Suppliers" asp-action="Index">Suppliers</a></li>
+                        <li><a asp-area="" asp-controller="AdminApplicationUsers" asp-action="Index">Members</a></li>
+                        <li><a asp-area="" asp-controller="Orders" asp-action="Index">Orders</a></li>
+                    }
+                </ul>
+                @await Html.PartialAsync("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()        
+        <div class="cartsh">
+            @if (!User.IsInRole("Admin"))
+            {
+                @await Component.InvokeAsync("ShoppingCartViewModel")
+            }
+        </div>
+        </div>
+        
+
+           
+
+            <script>
+             
+            </script>
+
+            
+            <footer>                
+                <div class="footer_links">
+                    <ul>                        
+                        <li><a href="http://dochyper.unitec.ac.nz/yuh46/asp_application1" target="_self">© Quality Cap™</a></li>
+                        <li><a href="/stores" target="_self">stores &amp; stockists</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">contact us</a></li>
+                        <li><a href="http://dochyper.unitec.ac.nz/yuh46/asp_application1" target="_self">gift voucher</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">customer support</a></li>
+                        <li><a href="http://dochyper.unitec.ac.nz/yuh46/asp_application1" target="_self">delivery &amp; returns</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">your privacy</a></li>
+                        <li><a href="http://dochyper.unitec.ac.nz/yuh46/asp_application1" target="_self">sitemap</a></li>
+                    </ul>                    
+                </div>
+                <div class="footer_content_bottom">
+                    <p><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></p>
+                    <div class="social">
+                        <span>&emsp;&emsp;&copy; 2018 - Quality Cap Inc. by Sabrina Yu. All rights reserved.&emsp;&emsp;</span>
+                        <a href="http://dochyper.unitec.ac.nz/yuh46/asp_application1">
+                            <i class="fa fa-facebook" aria-hidden="true">&nbsp;</i>
+                        </a>
+                        <a href="http://dochyper.unitec.ac.nz/yuh46/asp_application1"><i class="fa fa-instagram" aria-hidden="true">&nbsp;</i></a>
+                        <a href="http://dochyper.unitec.ac.nz/yuh46/asp_application1"><i class="fa fa-twitter" aria-hidden="true">&nbsp;</i></a>
+                        <a href="http://dochyper.unitec.ac.nz/yuh46/asp_application1">
+                            <i class="fa fa-google-plus" aria-hidden="true">&nbsp;</i>
+                        </a> <a href="http://dochyper.unitec.ac.nz/yuh46/asp_application1"><i class="fa fa-pinterest-p" aria-hidden="true">&nbsp;</i></a>
+                        <a href="http://dochyper.unitec.ac.nz/yuh46/asp_application1"><i class="fa fa-linkedin" aria-hidden="true">&nbsp;</i></a>
+                    </div>
+                </div>
+            </footer>
+        
+
+        <environment include="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+           
+        </environment>
+        <environment exclude="Development">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+                <script src="~/js/site.js" asp-append-version="true"></script>
+            </script>
+            <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+            </script>
+            <script src="~/js/site.min.js" asp-append-version="true"></script>
+        </environment>
+
+        @RenderSection("Scripts", required: false)
+</body>
+</html>
