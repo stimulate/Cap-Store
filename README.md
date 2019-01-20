@@ -1,8 +1,8 @@
 # Cap-Store
-https://github.com/stimulate/Cap-Shop
-##This is a E-Commerce Website for a cap store owner.<br>
-###Using C# Asp.Net Mvc Entity Framework <br>
-###For testing:<br>
+(https://github.com/stimulate/Cap-Shop)
+## This is a E-Commerce Website for a cap store owner.<br>
+### Using C# Asp.Net Mvc Entity Framework <br>
+### For testing:<br>
 <table style="border: 1px solid black;
   border-collapse: collapse;text-align: center;">
   <tr>
